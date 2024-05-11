@@ -4,7 +4,7 @@ export {
     Telegraph,
     upload,
 } from "https://deno.land/x/telegraph/mod.ts";
-export type { CreatePageOptions } from "https://deno.land/x/telegraph/mod.ts";
+export type { CreatePageOptions, TelegraphOptions } from "https://deno.land/x/telegraph/mod.ts";
 
 export {
     Context,

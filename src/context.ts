@@ -1,6 +1,6 @@
 import { parseHtml, parseMarkdown, Telegraph } from "./deps.deno.ts";
 import { Context, Message, NextFunction } from "./deps.deno.ts";
-import { longMessageOpts, TelegraphOptions } from "./types.d.ts";
+import { longMessageOpts, TelegraphOpts } from "./types.d.ts";
 
 export interface longMessagesFlavor<C extends Context = Context>
     extends Context {
@@ -28,7 +28,7 @@ export interface longMessagesFlavor<C extends Context = Context>
  * @see https://telegra.ph/api#createAccount
  */
 export function longMessages<C extends Context>(
-    publisher?: TelegraphOptions,
+    publisher?: TelegraphOpts,
 ) {
     publisher = { short_name: "Anonymous", ...publisher };
     const tph = new Telegraph(publisher);

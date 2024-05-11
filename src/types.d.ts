@@ -1,15 +1,13 @@
+import { TelegraphOptions, CreatePageOptions } from "./deps.deno.ts";
+
 export interface longMessageOpts {
     pageParseMode?: "HTML" | "Markdown";
-    pageTitle?: string,
+    pageTitle?: CreatePageOptions["title"],
     // accompanyMsg?: {
     //     text: string;
     //     opts: Record<string, never>;
     // };
 }
-
-export interface TelegraphOptions {
-    accessToken?: string;
-    short_name: string;
-    author_name?: string;
-    author_url?: string;
-}
+export type TelegraphOpts =
+    Required<Pick<TelegraphOptions, "short_name">>
+    & Omit<TelegraphOptions, 'apiRoot'>

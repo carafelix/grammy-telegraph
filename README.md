@@ -45,3 +45,7 @@ bot.command("example4", async (c) => {
     await c.replyWithLongMessage(msg);
 });
 ```
+
+## todo
+
+- add cache check
