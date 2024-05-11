@@ -34,7 +34,7 @@ bot.command("example2", async (c) => {
 });
 
 bot.command("example3", async (c) => {
-    const msg = `# My Super Long Message
+    const superLongMarkdown = `# My Super Long Message
     ![My Image](${await mediaUpload("./file.jpg")})`;
     await c.replyWithLongMessage(msg);
 });
