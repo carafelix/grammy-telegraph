@@ -1,3 +1,1 @@
-/**
- * MAIN PLUGIN CODE HERE
- */
+export { upload as mediaUpload } from "./deps.deno.ts";

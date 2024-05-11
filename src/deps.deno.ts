@@ -1,8 +1,13 @@
-/**
- * Export your deno-specific dependencies from here. Example:
- *
- * export * from "https://lib.deno.dev/x/grammy@1.x/mod.ts";
- * export * from "https://cdn.skypack.dev/@grammyjs/types@v2?dts";
- *
- *  That is if you use deno2node
- */
+export {
+    parseHtml,
+    parseMarkdown,
+    Telegraph,
+    upload,
+} from "https://deno.land/x/telegraph/mod.ts";
+export type { CreatePageOptions } from "https://deno.land/x/telegraph/mod.ts";
+
+export {
+    Context,
+    type NextFunction,
+} from "https://lib.deno.dev/x/grammy@1/mod.ts";
+export type { Chat, Message } from "https://lib.deno.dev/x/grammy@1/types.ts";
