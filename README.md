@@ -3,7 +3,7 @@
 ## Installing
 
 ```ts
-import { longMessages, longMessagesFlavor } from "@grammyjs/telegraph";
+import { longMessages, longMessagesFlavor } from "@example/telegraph";
 
 type MyContext = Context & longMessagesFlavor;
 
