@@ -1,13 +1,47 @@
-# The Hitchhiker's Guide to grammY Plugins
+# GrammY Telegraph Plugin
 
-grammY is very extensible and it supports installing plugins. This repository is a template for developing such plugins.
+## Installing
 
-⚠️ **For instructions on how to use this template please visit the [official docs](https://grammy.dev/plugins/guide.html).**
+```ts
+import { longMessages, longMessagesFlavor } from "@grammyjs/telegraph";
 
-# Rules of Contribution
+type MyContext = Context & longMessagesFlavor;
 
-Before diving into some hands-on examples, there are some notes to pay attention to if you would like your plugins to be submitted to the documentation:
+const bot = new Bot<MyContext>("BOT_TOKEN");
+bot.use(longMessages());
+```
 
-1. You should document your plugin (README with instructions).
-2. Explain the purpose of your plugin and how to use it by adding a page to the [docs](https://github.com/grammyjs/website).
-3. Choose a permissive license such as MIT or ISC.
+It's strongly recommend to install using a fixed access token to prevent creating a publisher on every action, you can create a publisher as specified [here](https://telegra.ph/api#createAccount):
+
+```ts
+bot.use(longMessages({ accessToken: "myAccessToken", short_name: "Me" }));
+```
+
+## Usage
+
+Default parse method is Markdown. A `mediaUpload` helper function it's provided for embedding images on the post
+
+```ts
+bot.command("example1", async (c) => {
+    await c.replyWithLongMessage(veryLongMarkdown);
+});
+
+bot.command("example2", async (c) => {
+    await c.replyWithLongMessage(veryLongHTML, {
+        pageParseMode: "HTML",
+        pageTitle: "My Title",
+    });
+});
+
+bot.command("example3", async (c) => {
+    const msg = `# My Super Long Message
+    ![My Image](${await mediaUpload("./file.jpg")})`;
+    await c.replyWithLongMessage(msg);
+});
+
+bot.command("example4", async (c) => {
+    const superLongHTML = `<h1>¡YES!</h1><br>
+    <img src="${await mediaUpload("./no.jpg")}">`;
+    await c.replyWithLongMessage(msg);
+});
+```

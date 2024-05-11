@@ -1,4 +1,3 @@
-import { parse } from "https://deno.land/x/grammy@v1.22.4/filter.ts";
 import { parseHtml, parseMarkdown, Telegraph } from "./deps.deno.ts";
 import { Context, Message, NextFunction } from "./deps.deno.ts";
 import { longMessageOpts, TelegraphOptions } from "./types.d.ts";
@@ -14,7 +13,7 @@ export interface longMessagesFlavor<C extends Context = Context>
      */
     replyWithLongMessage: (
         text: string,
-        opts: longMessageOpts,
+        opts?: longMessageOpts,
     ) => Promise<Message.TextMessage>;
 
 }

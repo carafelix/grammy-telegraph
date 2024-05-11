@@ -1,5 +1,8 @@
 {
     "lock": false,
+    "name": "@grammyjs/telegraph",
+    "version": "0.0.1",
+    "exports": "./src/mod.ts",
     "fmt": {
         "indentWidth": 4,
         "proseWrap": "preserve",
