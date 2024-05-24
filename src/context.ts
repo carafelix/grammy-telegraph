@@ -1,6 +1,6 @@
 import { parseHtml, parseMarkdown, Telegraph } from "./deps.deno.ts";
 import { Context, Message, NextFunction } from "./deps.deno.ts";
-import { longMessageOpts, TelegraphOpts } from "./types.d.ts";
+import { postsOpts, TelegraphOpts } from "./types.d.ts";
 
 export interface PostsFlavor<C extends Context = Context>
     extends Context {
@@ -13,7 +13,7 @@ export interface PostsFlavor<C extends Context = Context>
      */
     replyWithPost: (
         text: string,
-        opts?: longMessageOpts,
+        opts?: postsOpts,
     ) => Promise<Message.TextMessage>;
 
 }
@@ -37,7 +37,7 @@ export function posts<C extends Context>(
 
         ctx.replyWithPost = async (
             longMessage: string,
-            opts?: longMessageOpts,
+            opts?: postsOpts,
         ) => {
             if (!ctx.chat) {
                 throw new Error(

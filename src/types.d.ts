@@ -1,6 +1,6 @@
 import { TelegraphOptions, CreatePageOptions } from "./deps.deno.ts";
 
-export interface longMessageOpts {
+export interface postsOpts {
     pageParseMode?: "HTML" | "Markdown";
     pageTitle?: CreatePageOptions["title"],
     // accompanyMsg?: {
