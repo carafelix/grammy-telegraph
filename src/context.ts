@@ -13,7 +13,7 @@ export interface PostsFlavor<C extends Context = Context> extends Context {
      */
     replyWithPost: (
         post: string,
-        options?: postsOpts,
+        options?: postsOpts<C>,
     ) => Promise<Message.TextMessage>;
 }
 
@@ -36,7 +36,7 @@ export function posts<C extends Context>(
     return (ctx: PostsFlavor<C>, next: NextFunction) => {
         ctx.replyWithPost = async (
             text: string,
-            opts?: postsOpts,
+            opts?: postsOpts<C>,
         ) => {
             if (!ctx.chat) {
                 throw new Error(

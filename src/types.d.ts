@@ -1,12 +1,12 @@
 import { Context } from './deps.deno.ts';
 import { CreatePageOptions, TelegraphOptions } from './deps.deno.ts';
 
-export interface postsOpts {
+export interface postsOpts<C extends Context> {
     postParseMode?: 'HTML' | 'Markdown';
     postTitle?: CreatePageOptions['title'];
     message?: {
-        text?: Parameters<Context['reply']>[0];
-        other?: Parameters<Context['reply']>[1];
+        text?: Parameters<C['reply']>[0];
+        other?: Parameters<C['reply']>[1];
     };
 }
 
