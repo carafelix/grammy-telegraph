@@ -1,11 +1,11 @@
 import { assertExists } from "https://deno.land/std@0.203.0/assert/assert_exists.ts";
-import { Telegraph, parseMarkdown } from "../src/deps.deno.ts";
-import { TelegraphOptions } from "../src/types.d.ts";
+import { parseMarkdown, Telegraph } from "../src/deps.deno.ts";
+import { TelegraphOpts } from "../src/types.d.ts";
 import { assertObjectMatch } from "./deps.test.ts";
 import { describe, it } from "./deps.test.ts";
 import { dummyMarkdownText } from "./assets/text.ts";
 
-function getPublisher(publisher?: TelegraphOptions): TelegraphOptions {
+function getPublisher(publisher?: TelegraphOpts): TelegraphOpts {
     return { short_name: "Anonymous", ...publisher };
 }
 
@@ -24,24 +24,23 @@ describe("Publisher opts tests", () => {
 
 describe("Publish", () => {
     it("Creating an article should work with no access token provided", async () => {
-        const publisher = getPublisher({ short_name: 'papito' });
+        const publisher = getPublisher({ short_name: "papito" });
         const tph = new Telegraph(publisher);
         if (!tph.token.length) {
             tph.token = (await tph.createAccount(publisher)).access_token;
         }
-        const longMessage = dummyMarkdownText
-        const content = parseMarkdown(longMessage)
+        const longMessage = dummyMarkdownText;
+        const content = parseMarkdown(longMessage);
 
-        assertExists(content)
+        assertExists(content);
 
-        const page =
-            await tph
-                .create({
-                    title: `any`,
-                    content,
-                    ...publisher,
-                });
+        const page = await tph
+            .create({
+                title: `any`,
+                content,
+                ...publisher,
+            });
 
-        assertExists(page.url)
+        assertExists(page.url);
     });
 });
