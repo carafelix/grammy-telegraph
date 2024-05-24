@@ -1,10 +1,11 @@
 import { parseHtml, parseMarkdown, Telegraph } from './deps.deno.ts';
 import { Context, Message, NextFunction } from './deps.deno.ts';
 import { postsOpts, TelegraphOpts } from './types.d.ts';
+import { endsInWhitespace } from './utils.ts';
 
 export interface PostsFlavor<C extends Context = Context> extends Context {
     /**
-     * Reply with an Telegraph post url
+     * Reply with a Telegraph post url
      *
      * @param post The string to be converted to a post.
      * @param options define parse method for the post, specify an accompany msg and its own options
@@ -51,22 +52,26 @@ export function posts<C extends Context>(
 
             if (!content) {
                 throw new Error(
-                    'Content should not be undefined',
+                    'Content is empty',
                 );
             }
             if (!tph.token.length) {
                 tph.token = (await tph.createAccount(publisher)).access_token;
             }
+
+            // this will throw if you pass an invalid telegraph access token
             const page = await tph
-                .create({
+                ?.create({
                     title: `${opts?.postTitle}`,
                     content,
                     ...publisher,
                 });
 
-            const message = opts?.message?.text
-                ? opts?.message?.text + page.url
+            const msg = opts?.message?.text
+            const message = msg
+                ? (endsInWhitespace(msg) ? msg : msg + ' ') + page.url
                 : page.url;
+
             return await ctx.reply(message, opts?.message?.other);
         };
         return next();

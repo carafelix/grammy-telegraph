@@ -5,8 +5,8 @@ export interface postsOpts {
     postParseMode?: 'HTML' | 'Markdown';
     postTitle?: CreatePageOptions['title'];
     message?: {
-        text: Parameters<Context['reply']>[0];
-        other: Parameters<Context['reply']>[1];
+        text?: Parameters<Context['reply']>[0];
+        other?: Parameters<Context['reply']>[1];
     };
 }
 

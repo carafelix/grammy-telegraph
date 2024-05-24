@@ -22,7 +22,7 @@ describe('Publisher opts tests', () => {
     });
 });
 
-describe('Publish', () => {
+describe('Publish, requires --allow-net flag', () => {
     it('Creating an article should work with no access token provided', async () => {
         const publisher = getPublisher({ short_name: 'papito' });
         const tph = new Telegraph(publisher);
