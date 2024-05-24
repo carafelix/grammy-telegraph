@@ -1,16 +1,16 @@
 {
-    "name": "@grammyjs/plugin-template",
-    "version": "1.0.0",
-    "description": "A Simple Pluging Template For grammY",
-    "homepage": "https://grammy.dev/plugins/MYPLUGIN",
+    "name": "@grammyjs/telegraph",
+    "version": "0.1.0",
+    "description": "Telegraph middleware for grammY",
+    "homepage": "https://grammy.dev/plugins/telegraph",
     "main": "./out/mod.js",
-    "type": "commonjs",
     "scripts": {
+        "backport": "deno task backport",
         "build": "deno2node tsconfig.json"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Amir-Zouerami/plugin-template.git"
+        "url": "git+https://github.com:carafelix/grammy-telegraph.git"
     },
     "exports": {
         ".": "./out/mod.js"
@@ -18,10 +18,10 @@
     "files": [
         "out/"
     ],
-    "author": "Amir Zouerami",
+    "author": "Hero Protagonist",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/Amir-Zouerami/plugin-template/issues"
+        "url": "https://github.com/carafelix/grammy-telegraph/issues"
     },
     "peerDependencies": {
         "grammy": "^1.5.1"
@@ -31,7 +31,8 @@
     },
     "keywords": [
         "grammY",
-        "Telegram bot framework",
-        "plugin"
+        "plugin",
+        "telegram",
+        "telegraph"
     ]
 }

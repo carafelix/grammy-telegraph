@@ -67,7 +67,7 @@ export function posts<C extends Context>(
                     ...publisher,
                 });
 
-            const msg = opts?.message?.text
+            const msg = opts?.message?.text;
             const message = msg
                 ? (endsInWhitespace(msg) ? msg : msg + ' ') + page.url
                 : page.url;
