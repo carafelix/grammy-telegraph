@@ -2,16 +2,16 @@ import { parseHtml, parseMarkdown, Telegraph } from "./deps.deno.ts";
 import { Context, Message, NextFunction } from "./deps.deno.ts";
 import { longMessageOpts, TelegraphOpts } from "./types.d.ts";
 
-export interface longMessagesFlavor<C extends Context = Context>
+export interface PostsFlavor<C extends Context = Context>
     extends Context {
     /**
-     * Reply with an Telegraph article url
+     * Reply with an Telegraph post url
      *
-     * @param text The string to be converted to an article.
-     * @param opts define parse method for the article, specify an accompany msg and its own options
+     * @param text The string to be converted to an post.
+     * @param opts define parse method for the post, specify an accompany msg and its own options
      * @returns
      */
-    replyWithLongMessage: (
+    replyWithPost: (
         text: string,
         opts?: longMessageOpts,
     ) => Promise<Message.TextMessage>;
@@ -19,23 +19,23 @@ export interface longMessagesFlavor<C extends Context = Context>
 }
 
 /**
- * Installs the longMessage flavor into the context.
+ * Installs the Posts flavor into the context.
  *
  * it's STRONGLY recommended to provide an accessToken to avoid creating a publisher on every action.
  *
- * @param publisher Telegraph account from which the article would be publish, if not provided it would be automatically assign. Provide a publisherOpts.accessToken to access an existing account
+ * @param publisher Telegraph account from which the post would be publish, if not provided it would be automatically assign. Provide a publisherOpts.accessToken to access an existing account
  * @see https://github.com/dcdunkan/telegraph?tab=readme-ov-file#usage
  * @see https://telegra.ph/api#createAccount
  */
-export function longMessages<C extends Context>(
+export function posts<C extends Context>(
     publisher?: TelegraphOpts,
 ) {
     publisher = { short_name: "Anonymous", ...publisher };
     const tph = new Telegraph(publisher);
 
-    return (ctx: longMessagesFlavor<C>, next: NextFunction) => {
+    return (ctx: PostsFlavor<C>, next: NextFunction) => {
 
-        ctx.replyWithLongMessage = async (
+        ctx.replyWithPost = async (
             longMessage: string,
             opts?: longMessageOpts,
         ) => {
