@@ -1,6 +1,6 @@
-import { parseHtml, parseMarkdown, Telegraph } from "./deps.deno.ts";
-import { Context, Message, NextFunction } from "./deps.deno.ts";
-import { postsOpts, TelegraphOpts } from "./types.d.ts";
+import { parseHtml, parseMarkdown, Telegraph } from './deps.deno.ts';
+import { Context, Message, NextFunction } from './deps.deno.ts';
+import { postsOpts, TelegraphOpts } from './types.d.ts';
 
 export interface PostsFlavor<C extends Context = Context> extends Context {
     /**
@@ -29,7 +29,7 @@ export interface PostsFlavor<C extends Context = Context> extends Context {
 export function posts<C extends Context>(
     publisher?: TelegraphOpts,
 ) {
-    publisher = { short_name: "Anonymous", ...publisher };
+    publisher = { short_name: 'Anonymous', ...publisher };
     const tph = new Telegraph(publisher);
 
     return (ctx: PostsFlavor<C>, next: NextFunction) => {
@@ -39,19 +39,19 @@ export function posts<C extends Context>(
         ) => {
             if (!ctx.chat) {
                 throw new Error(
-                    "Cannot reply if the `chat` property does not exist on the update",
+                    'Cannot reply if the `chat` property does not exist on the update',
                 );
             }
 
-            const pageParseMode = opts?.postParseMode || "Markdown";
+            const pageParseMode = opts?.postParseMode || 'Markdown';
 
-            const content = pageParseMode === "Markdown"
+            const content = pageParseMode === 'Markdown'
                 ? parseMarkdown(text)
                 : parseHtml(text);
 
             if (!content) {
                 throw new Error(
-                    "Content should not be undefined",
+                    'Content should not be undefined',
                 );
             }
             if (!tph.token.length) {

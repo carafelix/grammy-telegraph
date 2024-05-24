@@ -6,6 +6,7 @@
     "fmt": {
         "indentWidth": 4,
         "proseWrap": "preserve",
+        "singleQuote": true,
         "exclude": [
             "./node_modules/",
             "./out/",

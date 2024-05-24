@@ -1,2 +1,2 @@
-export { upload as mediaUpload } from "./deps.deno.ts";
-export * from './context.ts'
+export { upload as mediaUpload } from './deps.deno.ts';
+export * from './context.ts';
