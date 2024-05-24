@@ -23,10 +23,12 @@
     "bugs": {
         "url": "https://github.com/carafelix/grammy-telegraph/issues"
     },
-    "peerDependencies": {
-        "grammy": "^1.5.1"
+    "dependencies": {
+        "better-telegraph": "^2.1.1",
+        "grammy": "^1.17.1"
     },
     "devDependencies": {
+        "typescript": "^5.1.6",
         "deno2node": "~1.0.0"
     },
     "keywords": [
