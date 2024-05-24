@@ -7,12 +7,12 @@ export interface PostsFlavor<C extends Context = Context> extends Context {
     /**
      * Reply with a Telegraph post url
      *
-     * @param post The string to be converted to a post.
+     * @param text The string to be converted to a post.
      * @param options define parse method for the post, specify an accompany msg and its own options
      * @returns
      */
     replyWithPost: (
-        post: string,
+        text: string,
         options?: postsOpts<C>,
     ) => Promise<Message.TextMessage>;
 }
