@@ -1,6 +1,6 @@
 {
-    "name": "@grammyjs/telegraph",
-    "version": "0.1.0",
+    "name": "@veet/grammy-telegraph",
+    "version": "0.1.4",
     "description": "Telegraph middleware for grammY",
     "homepage": "https://grammy.dev/plugins/telegraph",
     "main": "./out/mod.js",
