@@ -43,6 +43,11 @@ export function posts<C extends Context>(
                     'Cannot reply if the `chat` property does not exist on the update',
                 );
             }
+            if (!tph.token.length) {
+                tph.token = (await tph.createAccount(publisher)).access_token;
+                throw new Error
+                    (`No access token was provided.\nHere is one created for you: ${tph.token}`)
+            }
 
             const pageParseMode = opts?.postParseMode || 'Markdown';
 
@@ -54,10 +59,6 @@ export function posts<C extends Context>(
                 throw new Error(
                     'Content is empty',
                 );
-            }
-            if (!tph.token.length) {
-                tph.token = (await tph.createAccount(publisher)).access_token;
-                console.warn(`No access token was provided, it's recommended you pass one in the publisher param of the posts install function. This is the one it was created for you this time: ${tph.token}`)
             }
 
             // this will throw if you pass an invalid telegraph access token
